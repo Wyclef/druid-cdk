@@ -40,6 +40,7 @@
             "aws-cn"
         ],
         "retainData": false,
+        "internetFacing": false,
         "vpcCidr": "10.129.0.0/16",
         "druidVersion": "31.0.0",
         "druidOperationPlatform": "ec2",
