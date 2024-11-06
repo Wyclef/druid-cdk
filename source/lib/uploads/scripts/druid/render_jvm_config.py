@@ -199,6 +199,8 @@ def render_jvm_config(component, region, service_tier=None, service_priority=Non
         broker_heap_size = max(1, math.floor(
             memory_info['memory_total_gb'] * 0.3))
         # Render broker configuration
+        num_merge_buffers = max(2, cpu_info['count'] // 2)
+        
         direct_memory_size_max = (num_merge_buffers + 1) * 500
         render_jvm_file(
             f'{druid_home}/conf/druid/cluster/query/broker/jvm.config', 'broker',
@@ -229,15 +231,23 @@ def render_jvm_config(component, region, service_tier=None, service_priority=Non
             tier_to_broker_map=json.dumps(tier_to_broker_map), num_http_connections=num_http_connections)
 
     elif component == 'data':
-        # split CPU threads between historical and middleManager
-        num_threads = max(1, cpu_info['count'] // 2)
+        # # split CPU threads between historical and middleManager
+        # num_threads = max(1, cpu_info['count'] // 2)
+
+        # render_middle_manager_config(
+        #     num_threads, region, service_tier=service_tier, num_http_connections=num_http_connections)
+        # render_historical_config(
+        #     num_threads, region, cpu_info=cpu_info, service_tier=service_tier,
+        #     service_priority=service_priority, num_http_connections=num_http_connections)
+
+        historical_num_threads = max(1, cpu_info['count'] - 1)
+        middle_manager_num_threads = max(1, cpu_info['count'] // 5)
 
         render_middle_manager_config(
-            num_threads, region, service_tier=service_tier, num_http_connections=num_http_connections)
+            middle_manager_num_threads, region, service_tier=service_tier, num_http_connections=num_http_connections)
         render_historical_config(
-            num_threads, region, cpu_info=cpu_info, service_tier=service_tier,
+            historical_num_threads, region, cpu_info=cpu_info, service_tier=service_tier,
             service_priority=service_priority, num_http_connections=num_http_connections)
-
     elif component == 'historical':
         render_historical_config(
             cpu_info['count'] - 1, region, cpu_info=cpu_info,  service_tier=service_tier,
