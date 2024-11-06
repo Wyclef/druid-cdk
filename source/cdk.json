@@ -1,7 +1,9 @@
 {
     "app": "npx ts-node --prefer-ts-exts bin/druid-infra.ts",
     "watch": {
-        "include": ["**"],
+        "include": [
+            "**"
+        ],
         "exclude": [
             "README.md",
             "cdk*.json",
@@ -33,9 +35,11 @@
         "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
         "@aws-cdk/core:enablePartitionLiterals": true,
         "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
-        "@aws-cdk/core:target-partitions": ["aws", "aws-cn"],
-
-	"retainData": false,
+        "@aws-cdk/core:target-partitions": [
+            "aws",
+            "aws-cn"
+        ],
+        "retainData": false,
         "vpcCidr": "10.129.0.0/16",
         "druidVersion": "30.0.0",
         "druidOperationPlatform": "ec2",
@@ -54,26 +58,26 @@
             "master": {
                 "minNodes": 3,
                 "maxNodes": 3,
- 		        "rootVolumeSize": 30,
+                "rootVolumeSize": 30,
                 "instanceType": "m6g.large"
             },
             "query": {
                 "minNodes": 2,
                 "maxNodes": 2,
-		        "rootVolumeSize": 30,
+                "rootVolumeSize": 30,
                 "instanceType": "c6g.2xlarge"
             },
             "data": {
                 "minNodes": 5,
                 "maxNodes": 5,
-		        "rootVolumeSize": 300,
+                "rootVolumeSize": 300,
                 "segmentCacheVolumeSize": 100,
                 "instanceType": "m7g.4xlarge"
             },
             "zookeeper": {
                 "minNodes": 5,
                 "maxNodes": 5,
-		        "rootVolumeSize": 30,
+                "rootVolumeSize": 30,
                 "instanceType": "t4g.medium"
             }
         },
