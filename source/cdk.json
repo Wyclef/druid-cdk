@@ -71,8 +71,7 @@
             "data": {
                 "minNodes": 5,
                 "maxNodes": 5,
-                "rootVolumeSize": 300,
-                "segmentCacheVolumeSize": 100,
+                "segmentCacheVolumeSize": 250,
                 "instanceType": "m7g.4xlarge"
             },
             "zookeeper": {
