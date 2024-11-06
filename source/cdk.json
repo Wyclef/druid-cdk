@@ -41,7 +41,7 @@
         ],
         "retainData": false,
         "vpcCidr": "10.129.0.0/16",
-        "druidVersion": "30.0.0",
+        "druidVersion": "31.0.0",
         "druidOperationPlatform": "ec2",
         "druidClusterName": "druid-production",
         "druidExtensions": [
