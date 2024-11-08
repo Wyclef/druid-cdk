@@ -55,6 +55,18 @@
             "druid-protobuf-extensions",
             "druid-orc-extensions"
         ],
+        "druidEmitterConfig": {
+            "emitterType": "statsd",
+            "emitterConfig": {
+                "hostname": "localhost",
+                "port": 8125,
+                "dogstatsdConstantTags": [
+                    "cluster_name:druid-production",
+                    "env:prod",
+                    "service:druid"
+                ]
+            }
+        },
         "druidEc2Config": {
             "master": {
                 "minNodes": 3,
