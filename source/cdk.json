@@ -63,8 +63,7 @@
                 "port": 8125,
                 "dogstatsdConstantTags": [
                     "cluster_name:druid-production",
-                    "env:prod",
-                    "service:druid"
+                    "env:prod"
                 ]
             }
         },
