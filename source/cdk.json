@@ -53,7 +53,8 @@
             "druid-avro-extensions",
             "druid-parquet-extensions",
             "druid-protobuf-extensions",
-            "druid-orc-extensions"
+            "druid-orc-extensions",
+            "statsd-emitter"
         ],
         "druidEmitterConfig": {
             "emitterType": "statsd",
